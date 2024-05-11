@@ -1,0 +1,26 @@
+package tsv // import "github.com/tappoy/tsv"
+
+This package is used to read TSV(Tab Separated Values) files. If the first
+character of a line is '#', it becomes a comment. Blank lines are ignored.
+
+TYPES
+
+type TsvLine struct {
+	LineNo int
+	Line   string
+	Fields []string
+}
+
+func ParseTsv(r io.Reader) ([]TsvLine, error)
+    ParseTsv reads a TSV stream and returns a slice of TsvLine.
+
+    Errors:
+      - bufio.Scanner.Err()
+
+func ReadTsvFile(filename string) ([]TsvLine, error)
+    ReadTsvFile reads a TSV file and returns a slice of TsvLine.
+
+    Errors:
+      - os.Open()
+      - bufio.Scanner.Err()
+
